@@ -3,16 +3,26 @@ import React, { useEffect, useState } from "react";
 function App() {
   const [countries, setCountries] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then((response) => response.json())
-      .then((data) => setCountries(data))
-      .catch((error) => console.error("Error fetching data: ", error));
+      .then((data) => {
+        setCountries(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setError("Failed to load data.");
+        setLoading(false);
+      });
   }, []);
 
-  const filteredCountries = countries.filter((country) =>
-    country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredCountries = countries.filter(
+    (country) =>
+      country?.name?.common?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const cardStyle = {
@@ -60,6 +70,14 @@ function App() {
     height: "100px",
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <>
       <div style={headerStyle}>
@@ -73,7 +91,12 @@ function App() {
       </div>
       <div style={containerStyle}>
         {filteredCountries.map((country) => (
-          <div key={country.cca3} style={cardStyle} class="countryCard">
+          <div
+            key={country.cca3 || country.name.common}
+            style={cardStyle}
+            className="countryCard"
+            data-testid="country-container"
+          >
             <img
               src={country.flags.png}
               alt={`Flag of ${country.name.common}`}
