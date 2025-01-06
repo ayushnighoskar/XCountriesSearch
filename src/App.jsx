@@ -1,12 +1,5 @@
-import XCountriesSearch from "./XCountriesSearch";
-import "./App.css";
+import CountriesWithSearch from "./CountriesWithSearch";
 
-function App() {
-  return (
-    <>
-      <XCountriesSearch />
-    </>
-  );
+export default function App() {
+  return <CountriesWithSearch />;
 }
-
-export default App;
