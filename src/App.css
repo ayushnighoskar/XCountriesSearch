@@ -1,31 +1,6 @@
-/** @format */
-
-.countryGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.searchInput {
-  width: 300px;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.countryCard {
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
   text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-}
-
-.flag {
-  width: 100px;
-  height: auto;
-  margin-bottom: 10px;
-}
-.countryName {
-  font-weight: bold;
 }
