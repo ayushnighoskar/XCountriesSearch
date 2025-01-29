@@ -1,13 +1,12 @@
 import axios from "axios";
 import "./App.css";
 import { useEffect, useState } from "react";
-// import CardItem from "./CardItem";
 
 function App() {
   const [countriesData, setCountriesData] = useState([]);
   const [search, setSearch] = useState("");
   const [filterCountries, setFilterCountries] = useState([]);
- const [error, setError] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -25,24 +24,23 @@ function App() {
 
   useEffect(() => {
     const result = countriesData.filter(country => 
-      country.name.common.toLowerCase().includes(search.toLocaleLowerCase())
+      country.name.common.toLowerCase().includes(search.toLowerCase())
     );
     setFilterCountries(result);
   }, [search, countriesData]);
 
-
   return (
     <div>
       <div className="searchCountries">
-      <input 
-        type="text"
-        placeholder="Search for a Countries.."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      /> 
+        <input 
+          type="text"
+          placeholder="Search for a Country..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        /> 
       </div>
          
-       <div className="countryGrid">
+      <div className="countryGrid">
         {filterCountries.map((country, index) => (
           <div key={index} className="countryCard">
             <img
@@ -56,7 +54,7 @@ function App() {
         {error && <p className="errorMessage">{error}</p>}
       </div>
     </div>
-  )
-};
+  );
+}
 
 export default App;
