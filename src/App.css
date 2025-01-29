@@ -1,0 +1,87 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+input{
+  margin: 20px 0;
+  padding: 10px;
+  width: 800px;
+  justify-content: center;
+  align-items: center;
+  display: block;
+  align-self: center;
+
+}
+
+.searchCountries{
+  border-radius: 0%;
+  border-style: outset;
+  padding-left: 20%;
+}
+
+.countryGrid {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  gap: 20px;
+  padding: .90%;
+  border-radius: 20%;
+  border-radius: 25px;
+}
+
+.countryCard{
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 150px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  height: 100px;
+}
+
+.flagImage {
+  width: 100px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+p{
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
