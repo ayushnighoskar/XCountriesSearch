@@ -10,27 +10,27 @@ const mockCountries = [
   { name: { common: 'Indiana' }, flags: { png: 'https://flagcdn.com/us-in.png' } },
 ];
 
-test('renders learn react link', () => {
+test('UI Elements - should have an input field for searching', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const inputElement = screen.getByPlaceholderText('Search for a Country...');
+  expect(inputElement).toBeInTheDocument();
 });
 
-test('Country App Tests - API Calls - should call API and handle success', async () => {
+test('API Calls - should call API and handle success', async () => {
   axios.get.mockResolvedValueOnce({ data: mockCountries });
   render(<App />);
   await waitFor(() => expect(axios.get).toHaveBeenCalledTimes(1));
   expect(axios.get).toHaveBeenCalledWith('https://restcountries.com/v3.1/all');
 });
 
-test('Country App Tests - API Error Handling - logs an error to the console on API failure', async () => {
+test('API Error Handling - logs an error to the console on API failure', async () => {
   axios.get.mockRejectedValueOnce(new Error('API Error'));
   console.error = jest.fn();
   render(<App />);
   await waitFor(() => expect(console.error).toHaveBeenCalledWith('API Error:', 'API Error'));
 });
 
-test('Country App Tests - Display of Country Containers - should have containers with country flag and name', async () => {
+test('Display of Country Containers - should have containers with country flag and name', async () => {
   axios.get.mockResolvedValueOnce({ data: mockCountries });
   render(<App />);
   await waitFor(() => {
@@ -41,7 +41,7 @@ test('Country App Tests - Display of Country Containers - should have containers
   });
 });
 
-test('Country App Tests - Search Functionality - should filter countries based on search and show results accordingly', async () => {
+test('Search Functionality - should filter countries based on search and show results accordingly', async () => {
   axios.get.mockResolvedValueOnce({ data: mockCountries });
   render(<App />);
   await waitFor(() => {
@@ -58,7 +58,7 @@ test('Country App Tests - Search Functionality - should filter countries based o
   });
 });
 
-test('Country App Tests - Search Functionality - should show 3 containers when searching for "ind"', async () => {
+test('Search Functionality - should show 3 containers when searching for "ind"', async () => {
   axios.get.mockResolvedValueOnce({ data: mockCountries });
   render(<App />);
   await waitFor(() => {
