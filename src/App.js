@@ -37,18 +37,20 @@ function App() {
           placeholder="Search for a Country..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          data-testid="search-input" // Add test ID for easier testing
         /> 
       </div>
          
       <div className="countryGrid">
         {filterCountries.map((country, index) => (
-          <div key={index} className="countryCard">
+          <div key={index} className="countryCard" data-testid="country-card">
             <img
               src={country.flags.png}
               alt={`Flag of ${country.name.common}`}
               className="flagImage"
+              data-testid="flag-image"
             />
-            <p>{country.name.common}</p>
+            <p data-testid="country-name">{country.name.common}</p>
           </div>
         ))}
         {error && <p className="errorMessage">{error}</p>}
