@@ -42,6 +42,9 @@ describe('Country App Tests', () => {
 
     // Check if the error is logged to the console
     await waitFor(() => expect(console.error).toHaveBeenCalledWith('API Error:', 'API Error'));
+
+    // Check if the error message is displayed in the UI
+    expect(await screen.findByText('Error fetching countries')).toBeInTheDocument();
   });
 
   test('Search Functionality - should show 3 containers when searching for "ind"', async () => {

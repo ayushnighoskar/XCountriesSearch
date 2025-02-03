@@ -15,15 +15,15 @@ function App() {
         setCountriesData(response.data);
         setFilterCountries(response.data);
       } catch (error) {
-        setError('Error fetching countries');
-        console.error('API Error:', error.message);
+        setError("Error fetching countries");
+        console.error("API Error:", error.message);
       }
     };
     fetchCountries();
   }, []);
 
   useEffect(() => {
-    const result = countriesData.filter(country => 
+    const result = countriesData.filter((country) =>
       country.name.common.toLowerCase().includes(search.toLowerCase())
     );
     setFilterCountries(result);
@@ -32,15 +32,15 @@ function App() {
   return (
     <div>
       <div className="searchCountries">
-        <input 
+        <input
           type="text"
           placeholder="Search for a Country..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          data-testid="search-input" // Add test ID for easier testing
-        /> 
+          data-testid="search-input"
+        />
       </div>
-         
+
       <div className="countryGrid">
         {filterCountries.map((country, index) => (
           <div key={index} className="countryCard" data-testid="country-card">
