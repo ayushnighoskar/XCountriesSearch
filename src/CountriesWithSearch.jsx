@@ -15,7 +15,6 @@ function App() {
       })
       .then((data) => {
         setCountries(data);
-        console.log("Data fetched successfully:", data);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
@@ -81,21 +80,32 @@ function App() {
           style={searchStyle}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          data-testid="search-input"
         />
       </div>
       <div style={containerStyle}>
         {filteredCountries.map((country) => (
-          <div key={country.cca3} style={cardStyle} className="countryCard">
+          <div 
+            key={country.cca3} 
+            style={cardStyle} 
+            className="countryCard"
+            data-testid="country-card"
+          >
             <img
               src={country.flags.png}
               alt={`Flag of ${country.name.common}`}
               style={imageStyle}
+              data-testid="country-flag"
             />
-            <h2>{country.name.common}</h2>
+            <h2 data-testid="country-name">{country.name.common}</h2>
           </div>
         ))}
       </div>
-      {error && <div style={{ color: "red", textAlign: "center" }}>Error: {error.message}</div>}
+      {error && (
+        <div style={{ color: "red", textAlign: "center" }}>
+          Error: {error.message}
+        </div>
+      )}
     </>
   );
 }
